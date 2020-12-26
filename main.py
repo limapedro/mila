@@ -19,4 +19,3 @@ with sr.Microphone() as source:
 
         if str(text).lower() == 'what time is':
             print(datetime.datetime.now().strftime('%b-%d-%I%M%p-%G'))
-            break
