@@ -8,6 +8,18 @@
 from vosk import Model, KaldiRecognizer
 import os
 import pyaudio
+import pyttsx3
+
+
+
+# Speech Synthesis
+engine = pyttsx3.init()
+
+def speak(text):
+    engine.say(text)
+    engine.runAndWait()
+
+# Speech Recognition
 
 model = Model("model")
 rec = KaldiRecognizer(model, 16000)
@@ -22,4 +34,7 @@ while True:
     if len(data) == 0:
         break
     if rec.AcceptWaveform(data):
-        print(rec.Result())
+        text = rec.Result()
+
+        print(text)
+        speak(text)

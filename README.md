@@ -3,4 +3,11 @@
 
  The aim of this project is to Virtual Assistant available for more people.
 
- 
+ Breakdown:
+    Easy to download, change and learn.
+    Fast and expandible.
+
+Technologies:
+    Speech Recognition: (Google, Pocketsphinx, Vosk)
+    Speech Synthesis:
+    Some sort of AI.
