@@ -40,6 +40,6 @@ while True:
         # convert it to a json/dictionary
         result = json.loads(result)
 
-        print(type(result))
+        print(result['text'])
 
-        #speak(text)
+        speak(result['text'])
