@@ -7,6 +7,9 @@ from vosk import Model, KaldiRecognizer
 import os
 import pyaudio
 
+# Import the core lib
+from core import SystemInfo
+
 model = Model("model")
 rec = KaldiRecognizer(model, 16000)
 
