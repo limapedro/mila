@@ -23,4 +23,11 @@ while True:
     if len(data) == 0:
         break
     if rec.AcceptWaveform(data):
-        print(rec.Result())
+        # result is a string
+        result = rec.Result()
+        # convert it to a json/dictionary
+        result = json.loads(result)
+        text = result['text']
+
+        if text == 'what time is' or text == 'tell me the time':
+            speak(SystemInfo.get_time())
