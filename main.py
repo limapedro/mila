@@ -1,21 +1,27 @@
 
 # Import libraries
 
-import speech_recognition as sr
-import datetime
+#!/usr/bin/env python3
 
+from vosk import Model, KaldiRecognizer
+import os
+import pyaudio
 
-r = sr.Recognizer()
+model = Model("model")
+rec = KaldiRecognizer(model, 16000)
 
-# Get the default microphone
-with sr.Microphone() as source:
-    # Listens to a command, using 
-    
-    while True:
-        audio = r.listen(source)
+# Opens microphone for listening
+p = pyaudio.PyAudio()
+stream = p.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=8000)
+stream.start_stream()
 
-        # Recognizes speech using Google as a service: online
-        text = r.recognize_google(audio)
+while True:
+    data = stream.read(4000)
+    if len(data) == 0:
+        break
+    if rec.AcceptWaveform(data):
+        print(rec.Result())
+    else:
+        print(rec.PartialResult())
 
-        if str(text).lower() == 'what time is':
-            print(datetime.datetime.now().strftime('%b-%d-%I%M%p-%G'))
+print(rec.FinalResult())
