@@ -1,6 +1,8 @@
 
 # Import libraries
 
+# Branch 0.2
+
 #!/usr/bin/env python3
 
 from vosk import Model, KaldiRecognizer
