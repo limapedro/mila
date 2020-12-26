@@ -1,10 +1,9 @@
 import yaml
+import os
+import json
 
-'''
-data = yaml.load(open('train.yml').read())
-print(data)
-'''
 
-fs = open('train.yml').read()
+data = yaml.safe_load(open('nlu\\train.yml').read())
 
-print(fs)
+for command in data['commands']:
+    print(command)
