@@ -6,9 +6,21 @@
 from vosk import Model, KaldiRecognizer
 import os
 import pyaudio
-
+import json
+import pyttsx3
 # Import the core lib
 from core import SystemInfo
+
+# Speech Synthesis
+engine = pyttsx3.init()
+
+def speak(text):
+    engine.say(text)
+    engine.runAndWait()
+
+# Speech Recognition
+
+
 
 model = Model("model")
 rec = KaldiRecognizer(model, 16000)
