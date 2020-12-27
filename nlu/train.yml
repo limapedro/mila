@@ -35,6 +35,11 @@ commands:
     input: What's the weather like?
     entity: time
     action: getWeather
+  # Open
+  - command:
+    input: Open Google
+    entity: open
+    action: google
 
 
 
