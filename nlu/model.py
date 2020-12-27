@@ -5,7 +5,7 @@ import numpy as np
 
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorlfow.keras.layers import LSTM, Dense
+from tensorflow.keras.layers import LSTM, Dense
 from tensorflow.keras.utils import to_categorical
 
 data = yaml.safe_load(open('nlu\\train.yml').read())
@@ -19,42 +19,44 @@ for command in data['commands']:
     outputs.append('{}\{}'.format(command['entity'], command['action']))
 
 # Create a dataset
-# Choose a level of tokenization: words, chars, BPEs
+# Choose a level of tokenization: byte-level -> static vocab, handles out-out-vocabulary
 
-chars = set()
-
-# Read all chars in the dataset
-
-for i in inputs + outputs:
-    for ch in i:
-        if ch not in chars:
-            chars.add(ch)
-
-# Map each character to an index
-
-chr2idx = {}
-idx2chr = {}
-
-for k, ch in enumerate(chars):
-    chr2idx[ch]
-    idx2chr[k]
 
 # Create input data
 
 max_sent = max([len(x) for x in inputs])
 
-# Create arrays
-input_data = np.zeros((len(inputs), max_sent, len(chars)), dtype='int32')
+# Create arrays one-hot encoding (number of examples, seq length,  vocab_size)
+# Create arrays sparse encoding (number of examples, seq length)
 
-for i, input in enumerate(inputs):
-    for k, ch in enumerate(input):
-        input_data[i, k, chr2idx[ch]] = 1.0
+input_data = np.zeros((len(inputs), max_sent, 256), dtype='float32')
 
-output_data = to_categorical(output_data, len(output_data))
+for i, inp in enumerate(inputs):
+    for k, ch in enumerate(bytes(inp.encode('utf-8'))):
+        input_data[i, k, int(ch)] = 1.0
+
+#output_data = to_categorical(output_data, len(output_data))
 
 #print(input_data.shape)
 
-print(output_data[0])
+print(input_data[0].shape)
 
 #print(len(chars))
 #print('Max input seq:', max_sent)
+
+
+labels = set(outputs)
+
+label2idx = {}
+idx2label = {}
+
+for k, label in enumerate(labels):
+    label2idx[label] = k
+    idx2label[k] = label
+
+output_data = []
+
+for output in outputs:
+    output_data.append(label2idx[output])
+
+print(output_data)
