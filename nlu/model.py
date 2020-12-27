@@ -59,4 +59,12 @@ output_data = []
 for output in outputs:
     output_data.append(label2idx[output])
 
-print(output_data)
+output_data = to_categorical(output_data, len(labels))
+
+model = Sequential()
+model.add(LSTM(128))
+model.add(Dense(len(labels), activation='softmax'))
+
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['acc'])
+
+model.fit(input_data, output_data, epochs=256)
