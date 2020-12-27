@@ -9,3 +9,7 @@ Technologies:
     Speech Recognition: (Google, Pocketsphinx, Vosk)
     Speech Synthesis: Some sort of AI.
     Sort of an AI.
+
+
+Challenge of a Virtual Assistant:
+    Understand what the user wants. NLU (data-driven)
