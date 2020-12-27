@@ -47,6 +47,13 @@ print(input_data[0].shape)
 
 labels = set(outputs)
 
+fwrite = open('nlu\entities.txt', 'w', encoding='utf-8')
+for label in labels:
+    fwrite.write(label + '\n')
+fwrite.close()
+
+labels = open('nlu\entities.txt', 'r', encoding='utf-8').read().split('\n')
+
 label2idx = {}
 idx2label = {}
 
@@ -69,6 +76,8 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['acc']
 
 model.fit(input_data, output_data, epochs=256)
 
+model.save('nlu\model.h5')
+
 # Classify any given text into a category of our NLU framework
 def classify(text):
     # Create an input array
@@ -81,9 +90,12 @@ def classify(text):
     out = model.predict(x)
     idx = out.argmax()
 
-    print('Text: "{}" is classified as "{}"'.format(text, idx2label[idx]))
+    #print('Text: "{}" is classified as "{}"'.format(text, idx2label[idx]))
+    return idx2label
 
-
-while True:
-    text = input('Enter some text:')
-    classify(text)
+'''
+if __name__=='__main__':
+    while True:
+        text = input('Enter some text:')
+        classify(text)
+'''

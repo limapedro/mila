@@ -18,10 +18,10 @@ class SystemInfo:
         answer = 'The date is {} {}'.format(now.hour, now.minute)
         return answer
 
-'''
 
     @staticmethod
     def get_year():
         now = datetime.datetime.now()
         answer = 'The current year is {}'.format(now.hour, now.minute)
         return answer
+'''

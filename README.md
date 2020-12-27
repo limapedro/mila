@@ -8,7 +8,7 @@ Breakdown: Easy to download, change and learn. Fast and expandible.
 Technologies: 
     Speech Recognition: (Google, Pocketsphinx, Vosk)
     Speech Synthesis: Some sort of AI.
-    Sort of an AI.
+    NLU: Deep Learning library built with Keras.
 
 
 Challenge of a Virtual Assistant:
