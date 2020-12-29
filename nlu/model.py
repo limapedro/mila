@@ -74,7 +74,7 @@ model.add(Dense(len(labels), activation='softmax'))
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['acc'])
 
-model.fit(input_data, output_data, epochs=256)
+model.fit(input_data, output_data, epochs=512)
 
 model.save('nlu\model.h5')
 

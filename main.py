@@ -30,9 +30,12 @@ def evaluale(text):
     output = classify(text)
 
     entity = output['entity']
-    conf = output['conf']
+    conf = float(output['conf'])
 
-    print('You said: {}  Confidence: {}', text, conf)
+    print('You said: {}  Confidence: {}'.format(text, conf))
+
+    if conf < 0.997:
+        return
     
     if entity == 'time\\getTime':
          speak(SystemInfo.get_time())
@@ -77,6 +80,9 @@ while True:
         # convert it to a json/dictionary
         result = json.loads(result)
         text = result['text']
+
+        print(result['result'])
+
         evaluale(text)
         
         

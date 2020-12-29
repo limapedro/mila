@@ -1,7 +1,7 @@
-open\chrome
-open\mpc
 time\getWeather
-time\getTime
-open\notepad
-time\getYear
 time\getDate
+open\mpc
+time\getYear
+open\chrome
+open\notepad
+time\getTime
