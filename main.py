@@ -28,11 +28,11 @@ rec = KaldiRecognizer(model, 16000)
 
 # Opens microphone for listening.
 p = pyaudio.PyAudio()
-stream = p.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=4096)
+stream = p.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=8192)
 stream.start_stream()
 
 while True:
-    data = stream.read(2048)
+    data = stream.read(8192)
     if len(data) == 0:
         break
     if rec.AcceptWaveform(data):
@@ -46,6 +46,8 @@ while True:
 
         if entity == 'time\\getTime':
             speak(SystemInfo.get_time())
+        if entity == 'time\\getDate':
+            speak(SystemInfo.get_date())
         elif entity == 'time\\getYear':
             speak(SystemInfo.get_year())
         else:

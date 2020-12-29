@@ -24,7 +24,7 @@ for command in data['commands']:
 
 # Create input data
 
-max_sent = max([len(x) for x in inputs])
+max_sent = max([len(bytes(x.encode('utf-8'))) for x in inputs])
 
 # Create arrays one-hot encoding (number of examples, seq length,  vocab_size)
 # Create arrays sparse encoding (number of examples, seq length)
