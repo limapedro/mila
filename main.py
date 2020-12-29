@@ -36,10 +36,21 @@ def evaluale(text):
     elif entity == 'time\\getYear':
         speak(SystemInfo.get_year())
     elif entity == 'open\\notepad':
-        
+        speak('ok, opening notepad')
+        os.system('notepad.exe')
+    elif entity == 'open\\chrome':
+        speak('ok, opening google chrome')
+        os.system('"C:\Program Files\Google\Chrome\Application\chrome.exe"')
+    elif entity == 'open\\mpc':
+        speak('ok, opening media player classic')
+        os.system('"C:\Program Files\MPC-HC\mpc-hc64.exe"')
+    elif entity == 'open\\vlc':
+        speak('ok, opening vlc')
+        os.system('"C:\Program Files\VideoLAN\VLC\vlc.exe"')
+
 
     else:
-            pass
+        pass
 
 # Speech Recognition
 
@@ -62,6 +73,7 @@ while True:
         result = json.loads(result)
         text = result['text']
 
-        
-
         print('You said: ', text)
+        evaluale(text)
+        
+        

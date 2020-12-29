@@ -1,5 +1,7 @@
-time\getYear
-time\getTime
+open\chrome
+open\mpc
 time\getWeather
+time\getTime
+open\notepad
+time\getYear
 time\getDate
-open\google
