@@ -27,7 +27,7 @@ def classify(text):
     idx = out.argmax()
 
     #print('Text: "{}" is classified as "{}"'.format(text, idx2label[idx]))
-    return idx2label[idx]
+    return {"entity" : idx2label[idx], "conf" : max(out[0])}
 
 '''
 if __name__=='__main__':

@@ -27,7 +27,12 @@ def speak(text):
     engine.runAndWait()
 
 def evaluale(text):
-    entity = classify(text)
+    output = classify(text)
+
+    entity = output['entity']
+    conf = output['conf']
+
+    print('You said: {}  Confidence: {}', text, conf)
     
     if entity == 'time\\getTime':
          speak(SystemInfo.get_time())
@@ -72,8 +77,6 @@ while True:
         # convert it to a json/dictionary
         result = json.loads(result)
         text = result['text']
-
-        print('You said: ', text)
         evaluale(text)
         
         
