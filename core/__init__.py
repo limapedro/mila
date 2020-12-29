@@ -11,17 +11,16 @@ class SystemInfo:
         answer = 'The time now is {} {}'.format(now.hour, now.minute)
         return answer
 
-'''
+    '''
     @staticmethod
     def get_time():
         now = datetime.datetime.now()
-        answer = 'The date is {} {}'.format(now.hour, now.minute)
         return answer
+    '''
 
 
     @staticmethod
     def get_year():
         now = datetime.datetime.now()
-        answer = 'The current year is {}'.format(now.hour, now.minute)
+        answer = 'The date is day {} month {} and year {}'.format(now.month, now.day, now.year)
         return answer
-'''

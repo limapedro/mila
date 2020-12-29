@@ -46,3 +46,9 @@ while True:
 
         if entity == 'time\\getTime':
             speak(SystemInfo.get_time())
+        elif entity == 'time\\getYear':
+            speak(SystemInfo.get_year())
+        else:
+            pass
+
+        print('You said: ', text)
