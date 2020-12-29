@@ -5,14 +5,19 @@
 
 from vosk import Model, KaldiRecognizer
 import os
+import subprocess
 import pyaudio
 import json
 import pyttsx3
 # Import the core lib
 from core import SystemInfo
+from core.system import Runner
 
 # Import NLU classifier
 from nlu.classifier import classify
+
+# Runner
+runner = Runner()
 
 # Speech Synthesis
 engine = pyttsx3.init()
@@ -20,6 +25,21 @@ engine = pyttsx3.init()
 def speak(text):
     engine.say(text)
     engine.runAndWait()
+
+def evaluale(text):
+    entity = classify(text)
+    
+    if entity == 'time\\getTime':
+         speak(SystemInfo.get_time())
+    if entity == 'time\\getDate':
+        speak(SystemInfo.get_date())
+    elif entity == 'time\\getYear':
+        speak(SystemInfo.get_year())
+    elif entity == 'open\\notepad':
+        
+
+    else:
+            pass
 
 # Speech Recognition
 
@@ -42,15 +62,6 @@ while True:
         result = json.loads(result)
         text = result['text']
 
-        entity = classify(text)
-
-        if entity == 'time\\getTime':
-            speak(SystemInfo.get_time())
-        if entity == 'time\\getDate':
-            speak(SystemInfo.get_date())
-        elif entity == 'time\\getYear':
-            speak(SystemInfo.get_year())
-        else:
-            pass
+        
 
         print('You said: ', text)

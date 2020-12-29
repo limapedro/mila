@@ -37,9 +37,13 @@ commands:
     action: getWeather
   # Open
   - command:
-    input: Open Google
+    input: Open Notepad
     entity: open
-    action: google
+    action: notepad
+  - command:
+    input: Open Chrome
+    entity: open
+    action: chrome
 
 
 

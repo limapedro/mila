@@ -13,3 +13,6 @@ Technologies:
 
 Challenge of a Virtual Assistant:
     Understand what the user wants. NLU (data-driven)
+
+Functionality:
+    Open Programs
