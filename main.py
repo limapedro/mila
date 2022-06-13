@@ -6,8 +6,6 @@
 from vosk import Model, KaldiRecognizer
 import os
 import pyaudio
-<<<<<<< Updated upstream
-=======
 import json
 import pyttsx3
 # Import the core lib
@@ -26,19 +24,27 @@ def speak(text):
     engine.runAndWait()
 
 # Speech Recognition
->>>>>>> Stashed changes
 
 model = Model("model")
 rec = KaldiRecognizer(model, 16000)
 
 # Opens microphone for listening.
 p = pyaudio.PyAudio()
-stream = p.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=8000)
+stream = p.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=4096)
 stream.start_stream()
 
 while True:
-    data = stream.read(4000)
+    data = stream.read(2048)
     if len(data) == 0:
         break
     if rec.AcceptWaveform(data):
-        print(rec.Result())
+        # result is a string
+        result = rec.Result()
+        # convert it to a json/dictionary
+        result = json.loads(result)
+        text = result['text']
+
+        entity = classify(text)
+
+        if entity == 'time\\getTime':
+            speak(SystemInfo.get_time())
